@@ -2,3 +2,5 @@ literal assignment is directly assigning a value to something   eg name = "Bruce
 
 enums are a symbolic set of constant values
 Enums are useful when you have a fixed set of values that belong together, such as colors, directions, days of the week, etc.
+
+dictionary keys must be of immutable datatypes
