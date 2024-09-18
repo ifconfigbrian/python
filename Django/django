@@ -1,0 +1,53 @@
+django follows the MVT design pattern
+   M---Model-this is the data you want to present,often data from a database
+   
+      V---View-a request handler that returns the relevant template and content
+      
+         T---Template-a text file/HTML that contains logic on how to display the data
+         
+ORM(object relational mapping)--is a technique that allows you to interact with your database using your python code instead of writing raw SQL queries
+
+models are python classes that represent database tables
+models are usually located in models.py file
+
+A view is a function or method that takes http requests as arguments,imports relevant models and finds out what data to send to the template and returns the final result
+views are located in views.py
+
+templates are files where you describe how the result should be represented
+django uses standard HTML to describe the layoutbut uses django tags to add logic
+templates are found in the templates folder
+
+when a user requests a URL django decides which view it will send it to..URLS are found in the urls.py
+
+......SETTING UP A VIRTUAL ENVIRONMENT.......
+
+....python3 -m venv envname
+activate the environment
+....source envname/bin/activate
+
+..........DJANGO INSTALLATION........
+
+...python3 -m pip install Django
+
+.........CREATE FIRST PROJECT.......
+
+navigate to where you want to store the code and run:
+
+..django-admin startproject my_project
+
+run the the project
+
+..python3 manage.py runserver
+
+.........CREATE APP.........
+
+an app is a web application that has a specific meaning in your project eg: homepage,contact form or members database
+
+navigate to where you want to store the app
+
+..python3 manage.py startapp myapp
+
+....VIEWS....
+  this are python functions that take http requests and return http response like HTML documents
+  they are found in views.py
+  the name of the view does not have to be the same as the application
