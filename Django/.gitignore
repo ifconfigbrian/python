@@ -13,6 +13,8 @@ env/
 *.sqlite3
 db.sqlite3
 media/
+*.pot
+*.mo
 
 # IDE-specific files
 .vscode/
@@ -24,3 +26,4 @@ Thumbs.db
 
 # Misc
 *.log
+*.egg-info/
