@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member details</title>
+</head>
+<body>
+    <!-- detail.html -->
+<h1>Details for {{ member.firstname }} {{ member.lastname }}</h1>
+
+<p>ID: {{member.id}}</p>
+<p>First Name: {{ member.firstname }}</p>
+<p>Last Name: {{ member.lastname }}</p>
+
+<a href ="{% url 'home' %}">Back to Home</a>
+
+    
+</body>
+</html>

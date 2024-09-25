@@ -1,0 +1,99 @@
+....................SYNTAX.........................
+
+............VARIABLES...............
+
+you can render variables by putting them inside{{ }}
+
+you can send a variable to a template via a view...first create an object,fill it with data and send the first parameter in the template.render() function
+
+variables can also be created directly in the template by using {% with %} template tag     the variable is available until the {% endwith %} tag appears
+
+To get data from a model,import it in the views.py file and extract the data from it in the view
+
+the template tag can also be used when you want to include a loop
+
+.........TAGS..........
+  This are a way of telling django that here comes something else rather than plain HTML
+  The template tags allows us to do some programming on the server before sending HTML to the client
+    
+An if statement evaluates a block of code if the value is true
+
+elif keyword says if the previous conditions were not true then try this condition
+
+else keyword catches anything which isn't caught by the preceding conditions
+
+== operator s used to check if a variable is equal to a value
+
+and -used to check if more than one condition is true
+
+or -used to check if one of the conditions is true
+
+'and' and 'or' can be combined...when you do this remember parantheses are not allowed in if statements,thay are added for and but not for or
+
+in -used to check if an item is present in an object
+
+not in -opposite of in
+
+is -check if two objects are the same,checks the identity of two objects...if you have two objects pointing to the same object,the is operator evaluates to true
+
+is not -opposite of is
+
+a for loop is used for iterating over a sequence,like looping over items in an array,list or dictionary
+ data in a model is like a table with rows and columns
+ when we fetch data from the model,it comes as a queryset object
+ 
+ reversed -used when you want to loop in reversed order
+ 
+ empty -used if you want to do something if the object is empty,can also be used if the object does not exist
+ 
+ ........loop variables...........
+ 
+  forloop.counter- the current iteration starting at 1
+  forloop.counter0- the current iteration starting at 0
+  forloop.first- testing if the loop is on its first iteration
+  forloop.last- testing if the loop is on its last iteration
+  forloop.revcounter- current iteration in reverse,ending at 1
+   forloop.revcounter0- current iteration in reverse,ending at 0
+   
+ ............comments......
+   {% commment %}
+    <h1>something that will be ignored</h1>
+   {% endcomment %} 
+  you can also add a message to the comment
+   {% commment "message" %}
+   
+ for smaller comments you can use {# commented stuff #}
+ 
+ comments in views are shown by # since views is a python file
+ 
+...............include..............
+  this is useful when you have a block of content that is same for many pages
+   {% include 'footer.html' %}
+  you can send variables into templates by using the with keyword
+  in the include file you refer to the variables by using the {{ variablename }} syntax
+    {% include "mymenu.html" with me="TOBIAS" sponsor="W33d" %}
+    
+........QuerySet...............
+   this is a collection of data from a database
+   it is built up as a list of objects
+   they make it easier to get the data you actually need by alowing you to filter and order the data at an early stage
+   
+there are various methods to get data from a model into a queryset
+   values() -allows you to return each object as a python dictionary with names and values as key/value pairs
+   values_list() - return only the columns that you specify
+   filter() -filter the search to return specific rows/records
+     the filter method takes the arguments as kwargs so you can filter on more than one field by separating them by a comma
+     mydata = Member.objects.filter(lastname='Refsnes', id=2).values()
+  filter can also be used multiple times,by merging results with a pipe
+  mydata = Member.objects.filter(firstname='Emil').values() | Member.objects.filter(firstname='Tobias').values()
+
+field lookups are keywords that represent specific SQL keywords
+ all field lookup keywords must be specified with the fieldname,followed by two underscore characters and the keyword
+   mydata = Member.objects.filter(firstname__startswith='L').values()
+   
+order_by() -order results in a secific order,default is ascending
+ to change the direction to descending,use the minus sign infront f the field names
+  mydata = Member.objects.all().order_by('-firstname').values()
+to order by more than one field,separate the field names with a comma in the method
+  mydata = Member.objects.all().order_by('lastname', '-id').values()
+

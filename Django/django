@@ -1,0 +1,120 @@
+django follows the MVT design pattern
+   M---Model-this is the data you want to present,often data from a database
+   
+      V---View-a request handler that returns the relevant template and content
+      
+         T---Template-a text file/HTML that contains logic on how to display the data
+         
+ORM(object relational mapping)--is a technique that allows you to interact with your database using your python code instead of writing raw SQL queries
+
+models are python classes that represent database tables
+models are usually located in models.py file
+
+A view is a function or method that takes http requests as arguments,imports relevant models and finds out what data to send to the template and returns the final result
+views are located in views.py
+
+templates are files where you describe how the result should be represented
+django uses standard HTML to describe the layoutbut uses django tags to add logic
+templates are found in the templates folder
+
+when a user requests a URL django decides which view it will send it to..URLS are found in the urls.py
+
+......SETTING UP A VIRTUAL ENVIRONMENT.......
+
+....python3 -m venv envname
+activate the environment
+....source envname/bin/activate
+
+..........DJANGO INSTALLATION........
+
+...python3 -m pip install Django
+
+.........CREATE FIRST PROJECT.......
+
+navigate to where you want to store the code and run:
+
+..django-admin startproject my_project
+
+run the the project
+
+..python3 manage.py runserver
+
+.........CREATE APP.........
+
+an app is a web application that has a specific meaning in your project eg: homepage,contact form or members database
+
+navigate to where you want to store the app
+
+..python3 manage.py startapp myapp
+
+....VIEWS....
+  this are python functions that take http requests and return http response like HTML documents
+  they are found in views.py
+  the name of the view does not have to be the same as the application
+  
+ ......URLS......
+   file named urls.py should be created for the app you just created,it should be added in the same folder as views
+   
+to work with more complicated stuff we have to tell django whenever a new app is created,this is done in the settings.py file
+
+.......MODELS.......
+   data is created in objects caled models which are actually tables in a database
+   when we describe a model,we must first run a command to create the table in the database
+   ..python3 manage.py makemigrations app_name
+django creates a file describing the changes and stores the file in the migrations folder
+  now run the command python3 manage.py migrate to create the table
+  
+ **you can view the executed sql statement by running the command
+ ..python3 manage.py sqlmigrate members 0001....this is because the id is 1 which will be incremented for every table
+ 
+............INSERTING DATA.............
+  using the python shell...
+    python3 manage.py shell
+    from app_name.models import Member
+  list the contents of the table
+    Member.objects.all()
+    
+    member = Member(firstname='Brian',lastname='Wayne'
+    member.save()
+  check if the Member table got a table
+    Member.objects.all().values()
+    
+  adding multiple values
+    
+    member1 = Member(firstname='Brian',lastname='Wayne'
+    member2 = Member(firstname='Bian',lastname='Wayne'
+    member3 = Member(firstname='Brian',lastname='Wae'
+    member4 = Member(firstname='Ban',lastname='Wyne'
+    
+    for x in members_list:
+      x.save() 
+      
+...........UPDATE DATA................
+  before updating,we first get the result we want to update
+        from members.models import Member
+        x = Member.objects.all()[3]
+        
+        x.fistname = "Bruce"
+        x.save()
+        
+        Member.objects.all().values()
+        
+
+........... DELETE DATA................
+  before deleting,we first get the result we want to update
+        from members.models import Member
+        x = Member.objects.all()[4]
+        
+        x.delete()
+        
+        Member.objects.all().values()
+     
+
+........... UPDATE  MODEL................
+   to add a field to an already created table,open the models.py and make your changes
+   if a value is to be null specify that,null=true
+   now tell django it should update the database
+   
+      python3 manage.py makemigrations member
+   now run te migrate command
+      python3 manage.py migrate

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Home</title>
+</head>
+<body>
+   
+    <h1>Member List</h1>
+    {% if members%}
+      <ul>
+        {% for member in members %}
+         <li>{{ forloop.counter }}. {{member.name}} {{member.lastname}}</li>
+         {% endfor %}
+      </ul>
+    {% else %}
+      <p>no members found!</p>
+    {% endif %}
+    {% include 'member_list.html' %}
+    
+</body>
+</html>

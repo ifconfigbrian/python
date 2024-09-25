@@ -1,0 +1,48 @@
+django tells django to perform some programming logic inside the brackets
+
+data to be displayed on the webpage should be stored in the templates folder
+to make the model data available in the template,we import the Member model in the view and send it to the template
+
+......ADDING LINKS TO DETAILS.......
+   here we get more details about specific members
+   we start by creating a new details.html template
+   create a new view in the views.py that will deal with  incoming requests to the details url
+   
+  details view summary functions:
+     gets the id as an argument
+     uses the id to locate the correct record in the member table
+     loads the details template
+     creates an object containing the member
+     sends the object to the template
+     outputs the html that is rendered by the template
+     
+now the details url should point to the correct view with the id as the parameter
+
+...............MASTER TEMPLATE.................
+    you can have a parent template that you can include in all pages to do the stuff that is same in all pages
+    you can include this template in the others by using the{%extends%} tag and inserting a title and content block
+    
+..............MAIN INDEX FILE.............
+     this is the landing page when someone visits the root folder of our project
+     add a view and urls then a link that wil point to the main page
+     
+.................404 TEMPLATE................
+
+ gets displayed when the page you are trying to access does not exist
+ when you turn debug mode to false,you have to specify the hosts you will allow the project to run from,in production this will be a proper domain name
+ 
+.........TEST VIEW...........
+   when testing different aspects,it is a good idea to have somewhere to test code without destroying the main project
+   
+........CREATING A USER...........
+   python3 manage.py createsuperuser
+   fill in all requirements in the prompts that will display and restart the server
+   
+.........INCLUDE MODELS..........
+   to include a model in the admin interface,you have to tell django,this is done in a file called admin.py located in the apps folder
+   admin.site.register(Member)
+   
+ you can change the list display to be more reader friendly:
+  change the string representation function,__str__() of the member model
+  set the list_details property of the member model
+     
