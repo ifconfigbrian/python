@@ -51,6 +51,7 @@ navigate to where you want to store the app
   this are python functions that take http requests and return http response like HTML documents
   they are found in views.py
   the name of the view does not have to be the same as the application
+<<<<<<< HEAD
   
  ......URLS......
    file named urls.py should be created for the app you just created,it should be added in the same folder as views
@@ -118,3 +119,5 @@ django creates a file describing the changes and stores the file in the migratio
       python3 manage.py makemigrations member
    now run te migrate command
       python3 manage.py migrate
+=======
+>>>>>>> f869df7212b99dd3b13b46392590d24667de830f
